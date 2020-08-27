@@ -3,14 +3,14 @@
 
 ## React client application routes
 
-- Route `/`: page content and purpose
-- Route `/something/:param`: page content and purpose, param specification
+- Route `/`: Redirect to login page
+- Route `/login`: login page for both student and teacher
 - ...
 
 ## REST API server
 
-- POST `/login`
-  - request parameters and request body content
+- POST `/api/login`
+  - request parameters and request body content: for teacher contein teacher code and password, for student contein only the student code, server will understand the difference based on the first letter of the code.
   - response body content
 - GET `/api/something`
   - request parameters
@@ -22,13 +22,14 @@
 
 ## Server database
 
-- Table `users` - contains xx yy zz
+- Table `teacher` - contains code name surname course_name
+- Table `student` - contains code name surname
 - Table `something` - contains ww qq ss
 - ...
 
 ## Main React Components
 
-- `ListOfSomething` (in `List.js`): component purpose and main functionality
+- `LoginForm` (in `App.js`): show the login conteiners and allow login
 - `GreatButton` (in `GreatButton.js`): component purpose and main functionality
 - ...
 
