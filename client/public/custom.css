@@ -13,7 +13,7 @@
       flex-direction: column;
       
     }
-  .centered1{
+  .centered2{
   
       margin-top: 50px;
   }
@@ -32,6 +32,11 @@
       margin-top: 100px;
       margin-bottom: 5px;
   }
+  .topspace2{
+  
+    margin-top: 300px;
+    margin-bottom: 5px;
+}
   .bianco {
       color: white;
      
@@ -90,4 +95,8 @@
   
   .leftspace{
       margin-left: 50%;
+  }
+
+  .bottomspace{
+      margin-bottom: 50px;
   }

@@ -13,7 +13,7 @@ exports.db=function (){return db;}
 exports.tableSetUp= function(){
     return new Promise((resolve, reject)=>{
         
-        db.run('CREATE TABLE IF NOT EXISTS teacher(\
+        db.run('CREATE TABLE IF NOT EXISTS teachers(\
             code INTEGER PRIMARY KEY AUTOINCREMENT,\
             name TEXT NOT NULL,\
             surname TEXT NOT NULL,\
@@ -23,14 +23,14 @@ exports.tableSetUp= function(){
                   reject(err);
                   return;
               }
-            db.get('SELECT * FROM teacher WHERE name=\'Gianni\';', function (err, row){
+            db.get('SELECT * FROM teachers WHERE name=\'Gianni\';', function (err, row){
                 if(err){
                    console.log(err);
                    return;
                 }
                 if(row==null){
                     
-                    db.run('INSERT INTO teacher(name, surname, course, password)\
+                    db.run('INSERT INTO teachers(name, surname, course, password)\
                             VALUES(\'Gianni\', \'Surace\', \'Web Application I\', \'12345\');', function(err){
                         if(err){
                             console.log(err);
@@ -42,7 +42,7 @@ exports.tableSetUp= function(){
         });
 
       
-        db.run('CREATE TABLE IF NOT EXISTS student(\
+        db.run('CREATE TABLE IF NOT EXISTS students(\
             code INTEGER PRIMARY KEY AUTOINCREMENT,\
             name TEXT NOT NULL,\
             surname TEXT NOT NULL);', function (err){
@@ -51,22 +51,22 @@ exports.tableSetUp= function(){
                   return;
                 }
                 
-                db.get('SELECT * FROM student WHERE name=\'Marco\';', function (err, row){
+                db.get('SELECT * FROM students WHERE name=\'Marco\';', function (err, row){
                 if(err){
                    console.log(err);
                    return;
                 }
                 if(row==null){
                     
-                    db.run('INSERT INTO student(name, surname)\
-                            VALUES(\'Marco\', \'Surace\');', function(err){
+                    db.run('INSERT INTO students(name, surname)\
+                            VALUES(\'Marco\', \'Gullotto\');', function(err){
                         if(err){
                             console.log(err);
                             return;
                         }
                     });
 
-                    db.run('INSERT INTO student(name, surname)\
+                    db.run('INSERT INTO students(name, surname)\
                             VALUES(\'Federica\', \'Giorgione\');', function(err){
                         if(err){
                             console.log(err);
@@ -74,8 +74,8 @@ exports.tableSetUp= function(){
                         }
                     });
 
-                    db.run('INSERT INTO student(name, surname)\
-                            VALUES(\'Silvia\', \'Giammarino\');', function(err){
+                    db.run('INSERT INTO students(name, surname)\
+                            VALUES(\'Silvia\', \'Giammarinaro\');', function(err){
                         if(err){
                             console.log(err);
                             return;
@@ -86,8 +86,47 @@ exports.tableSetUp= function(){
         
         });
 
+        db.run('CREATE TABLE IF NOT EXISTS results(\
+            code INTEGER NOT NULL,\
+            exam INTEGER NOT NULL,\
+            vote TEXT NOT NULL,\
+            passed BOOLEAN NOT NULL CHECK (passed IN (0,1)),\
+            primary key (code, exam))', function(err){
+                if(err){
+                    console.log(err);
+                    return;
+                }
+        });
 
-   
+        db.run('CREATE TABLE IF NOT EXISTS exam_slot(\
+            exam INTEGER NOT NULL,\
+            date TEXT NOT NULL,\
+            duration INTEGER NOT NULL,\
+            call  INTEGER NOT NULL,\
+            booked BOOLEAN NOT NULL CHECK (booked in (0,1)),\
+            mat INTEGER NOT NULL)', function(err){
+                if(err){
+                    console.log(err);
+                    return;
+                }
+            });
+        
+            db.run('CREATE TABLE IF NOT EXISTS exam_call(\
+                call INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\
+                exam INTEGER NOT NULL)', function(err){
+                    if(err){
+                        console.log(err);
+                        return;
+                    }
+                });
+                db.run('CREATE TABLE IF NOT EXISTS call_students(\
+                    call INTEGER NOT NULL ,\
+                    mat INTEGER NOT NULL)', function(err){
+                        if(err){
+                            console.log(err);
+                            return;
+                        }
+                    });
    
     });
 }
