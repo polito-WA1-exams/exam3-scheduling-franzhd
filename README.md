@@ -114,7 +114,7 @@
 
 -  `SingleStudent` (in `App.js`): show details of the single student
 
--  `Results` (in `App.js`): show every exam with the results if jet done otherwise show the booked slot
+-  `Results` (in `App.js`): show every exam with the results if yet done otherwise show the booked slot
 
 -  `SIngleExam` (in `App.js`): give info about the single exam
 
