@@ -123,7 +123,7 @@
 
 Login page
 
-![Configurator Screenshot](./img/login.jpg)
+![Configurator Screenshot](./img/Login.jpg)
 
 Exam Creation (teacher)
 
